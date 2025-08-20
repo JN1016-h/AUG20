@@ -1,5 +1,5 @@
 # first stage
-FROM openjdk:23-jdk-oracle AS builder
+FROM openjdk:21-jdk-oracle AS builder
 
 WORKDIR /app
 
@@ -11,7 +11,7 @@ COPY pom.xml .
 RUN ./mvnw package -DskipTests=true
 
 # second stage
-FROM openjdk:23-jdk-oracle
+FROM openjdk:21-jdk-oracle
 
 WORKDIR /runningapp
 
@@ -22,3 +22,4 @@ ENV SERVER_PORT=8085
 EXPOSE ${SERVER_PORT}
 
 CMD ["java", "-jar", "d13revision-0.0.1-SNAPSHOT.jar"]
+#run the application
